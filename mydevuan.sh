@@ -1,39 +1,6 @@
 #!/bin/bash
-
-statusStr="mydevuan"
-
-getCol() {
-    IFS=';' read -sdR -p $'\E[6n' ROW COL
-    echo $((COL-1))
-}
-
-draw() {
-    echo -e "\033[1;1H"
-
-    cols=$(tput cols)
-    num_dashes=$(($cols / 2 - $((${#statusStr} / 2 + 1))))
-
-    if (( num_dashes > 0 )); then
-        printf '%*s' "$num_dashes" '' | tr ' ' "-"
-    else
-        echo "Not enough columns for dashes"
-    fi
-
-    printf " "
-    echo -n $statusStr
-    printf " "
-
-    printf '%*s' "$num_dashes" '' | tr ' ' "-"
-
-    while [ $(getCol) -ne $cols ]
-    do
-        printf "-"
-    done
-}
-
 sudo echo "Starting..."
 clear
-draw
 
 # Add the bookworm apt repo
 echo "Adding the bookworm APT repository..."
@@ -201,5 +168,5 @@ chmod 600 $dmrc_path
 
 # Reboot so we can enter the postinstall
 echo "Rebooting..."
-sleep 100
+sleep 1
 sudo reboot
