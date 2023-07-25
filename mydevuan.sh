@@ -201,5 +201,5 @@ chmod 600 $dmrc_path
 
 # Reboot so we can enter the postinstall
 echo "Rebooting..."
-sleep 1
+sleep 100
 sudo reboot
