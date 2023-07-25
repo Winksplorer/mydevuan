@@ -1,0 +1,2 @@
+# mydevuan
+my postinstall script
